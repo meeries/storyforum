@@ -5,8 +5,13 @@ Sovellus perustuu materiaalissa olevaan keskustelusovellukseen, mutta keksustelu
 
 ## Ominaisuudet
 Käyttäjä voi luoda käyttäjätilin
+
 Käyttäjä voi kirjautua sisään
+
 Käyttäjä voi lisätä foorumille tarinan
+
 Käyttäjä voi lisätä kommentteja muiden tarinoihin
+
 Käyttäjä voi tykätä tarinoista (?)
+
 Käyttäjä voi poistaa lisäämänsä tarinan (?)
