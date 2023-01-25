@@ -1,29 +1,35 @@
 from app import app
-import flask
+from flask import abort, render_template, redirect, request, session
 import users
 import stories
-import comments
 
 @app.route("/")
 def index():
-    list = stories.get_list()
-    return flask.render_template("index.html", count=len(list), messages=list)
+    return render_template("index.html")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if flask.request.method == "GET":
-        return flask.render_template("register.html")
-    if flask.request.method == "POST":
-        username = flask.request.form["username"]
-        password1 = flask.request.form["password1"]
-        password2 = flask.request.form["password2"]
-#TODO: CHECKING PASSWORD AND USERNAME
+    if request.method == "GET":
+        return render_template("register.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        password1 = request.form["password1"]
+        password2 = request.form["password2"]
+        if password1 != password2:
+            return render_template("error.html", error="Passwords do not match")
+        if len(password1) < 5:
+            return render_template("error.html", error="Password must be at least 5 characters")
+        if len(username) < 1:
+            render_template("error.html", error="Username can't be empty")
+        return redirect("/login")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if flask.request.method == "GET":
-        return flask.render_template("login.html")
-    if flask.request.method == "POST":
-        username = flask.request.form["username"]
-        password = flask.request.form["password"]
-#TODO: CHECKING PASSWORD AND USERNAME 
+    if request.method == "GET":
+        return render_template("login.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+    return redirect("/")
+

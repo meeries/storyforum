@@ -1,0 +1,13 @@
+<!doctype html>
+<title>StoryForum - {% block title %}{% endblock %}</title>
+<h1>StoryForum</h1>
+{% if session.user_id %}
+You are logged in as: <b>{{ session.user_name }}</b>
+<a href="/">Home</a>
+{% else %}
+<a href="/login">Log in</a>
+<a href="/register">Create an account</a>
+{% endif %}
+<hr>
+{% block content %}{% endblock %}
+<hr>
