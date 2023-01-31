@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2 class="text-center">Create a new story</h2>
+<form action="/newstory" method="post">
+<div class="text-center">
+<p>Story title<br>
+    <input type="text" name="storytitle" minlength="1" maxlength="30"></p>
+    
+    <p>Story<br>
+    <textarea name="comments" rows="8" cols="20" maxlength="1000"></textarea></p>
+    <select class="form-select text-center mx-auto" name="category">
+        
+        {% for i in categories %}
+        <option value="{{ i.category_name }}">
+            {{i.category_name}}</option>
+        {% endfor %}
+    </select>
+    <p>
+    <p>
+    <input type="submit" value="Post">
+
+    </form>
+    
+</div>
+{% endblock %}

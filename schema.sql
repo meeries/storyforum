@@ -26,3 +26,20 @@ CREATE TABLE comments (
     story_id INTEGER REFERENCES stories,
     sent_at TIMESTAMP
 );
+
+CREATE TABLE likes (
+    acc_id INTEGER REFERENCES users ON DELETE CASCADE,
+    comm_id INTEGER REFERENCES comments ON DELETE CASCADE,
+    PRIMARY KEY (acc_id, comm_id)
+);
+
+CREATE INDEX ON likes (comm_id)
+;
+
+INSERT INTO categories (category_name) VALUES
+('Cats'),
+('Dogs'),
+('Life stories'),
+('Short stories'),
+('History'),
+('Other');

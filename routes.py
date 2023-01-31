@@ -1,6 +1,6 @@
 from app import app
 from flask import abort, render_template, redirect, request, session
-import users
+import users, categories, stories, comments
 
 @app.route("/")
 def index():
@@ -40,3 +40,27 @@ def login():
 def logout():
     users.logout()
     return redirect("/")
+
+###
+@app.route("/newstory", methods=["GET", "POST"])
+def newstory():
+    if request.method == "GET":
+        return render_template("newstory.html", categories=categories.get_categories())
+    if request.method == "POST":
+        story_title = request.form["storytitle"]
+        if len(story_title) < 1:
+            return render_template("error.html", message="Title can't be empty")
+
+        content = request.form["story"]
+        if len(content) < 100:
+            return render_template("error.html", message="Please write at least 100 characters")
+        
+        story_category = request.form["category"]
+        story_id = stories.add_story(story_title, content, users.user_id(), story_category)
+        return redirect("/story/" + str(story_id))
+
+@app.route("/story/<int:id")
+def story(id):
+    story = stories.get_story(id)
+    comments = stories.get_story_comments
+    return render_template("story.html", story=story, id=id, comments=comments)
