@@ -22,6 +22,8 @@ def login(username, password):
     if not check_password_hash(user[0], password):
         return False
     session["user_id"] = user[1]
+    session["user_name"] = username
+
     return True
 
 def user_id():
@@ -29,7 +31,7 @@ def user_id():
 
 def logout():
     del session["user_id"]
-
+    del session["user_name"]
 def username_available(username):
     sql = "SELECT COUNT(*) FROM users WHERE username=:username"
     result= db.session.execute(sql, {"username":username})

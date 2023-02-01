@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS users, categories, stories, comments, likes;
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE,

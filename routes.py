@@ -65,3 +65,10 @@ def story(id):
     story = stories.get_story(id)
     comments = stories.get_story_comments
     return render_template("story.html", story=story, id=id, comments=comments)
+
+###
+@app.route("/category/<int:id>")
+def category(id):
+    category_name = categories.get_category_name(id)
+    stories = categories.get_category_stories(id)
+    return render_template("category.html", category_name=category_name, id=id, stories=stories)
