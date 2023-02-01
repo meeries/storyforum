@@ -11,7 +11,7 @@ def register(username, password):
         db.session.commit()
     except:
         return False
-    return True
+    return login(username, password)
 
 def login(username, password):
     sql = "SELECT password, id FROM users WHERE username=:username"
@@ -21,18 +21,14 @@ def login(username, password):
         return False
     if not check_password_hash(user[0], password):
         return False
-    else:
-        if check_password_hash(user.password, password):
-            session["user_id"] = user.id
-            return True
-        else:
-            return False
+    session["user_id"] = user[1]
+    return True
+
+def user_id():
+    return session.get("user_id)")
 
 def logout():
     del session["user_id"]
-
-def user_id():
-    return session.get("user_id)", 0)
 
 def username_available(username):
     sql = "SELECT COUNT(*) FROM users WHERE username=:username"

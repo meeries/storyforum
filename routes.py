@@ -58,10 +58,7 @@ def newstory():
         content = request.form["story"]
         if len(content) < 100:
             return render_template("error.html", message="Please write at least 100 characters")
-        story_category = request.form["category"]
-        story_id = stories.add_story(story_title, content, users.user_id(), story_category)        
-
-        return redirect("/story/" + str(story_id))
+        return redirect("/")
 
 @app.route("/story/<int:story_id>")
 def story(id):

@@ -37,9 +37,9 @@ CREATE INDEX ON likes (comm_id)
 ;
 
 INSERT INTO categories (category_name) VALUES
-('Cats'),
-('Dogs'),
-('Life stories'),
-('Short stories'),
+('Life'),
+('Travel'),
 ('History'),
+('Love'),
+('Health'),
 ('Other');
