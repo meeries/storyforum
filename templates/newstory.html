@@ -8,11 +8,11 @@
     <input type="text" name="storytitle" minlength="1" maxlength="30"></p>
     
     <p>Story<br>
-    <textarea name="comments" rows="8" cols="20" maxlength="1000"></textarea></p>
+    <textarea name="story" rows="8" cols="20" maxlength="1000"></textarea></p>
     <select class="form-select text-center mx-auto" name="category">
         
         {% for i in categories %}
-        <option value="{{ i.category_name }}">
+        <option value="{{ i.id }}">
             {{i.category_name}}</option>
         {% endfor %}
     </select>

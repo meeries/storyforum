@@ -10,9 +10,13 @@ def index():
 def register():
     if request.method == "GET":
         return render_template("register.html")
+
     if request.method == "POST":
         username = request.form["username"]
-        if len(username) < 1:
+        available = users.username_available(username)
+        if available > 0:
+            return render_template("error.html", message="Username is taken")
+        if len(username) > 0:
             render_template("error.html", message="Username can't be empty")
         password1 = request.form["password1"]
         password2 = request.form["password2"]
@@ -21,7 +25,7 @@ def register():
         if len(password1) < 5:
             return render_template("error.html", message="Password must be at least 5 characters")
         if users.register(username, password1):
-            return redirect("/")
+            return redirect("/login")
         else:
             return render_template("error.html", message="Registering failed")
 
@@ -54,12 +58,12 @@ def newstory():
         content = request.form["story"]
         if len(content) < 100:
             return render_template("error.html", message="Please write at least 100 characters")
-        
         story_category = request.form["category"]
-        story_id = stories.add_story(story_title, content, users.user_id(), story_category)
+        story_id = stories.add_story(story_title, content, users.user_id(), story_category)        
+
         return redirect("/story/" + str(story_id))
 
-@app.route("/story/<int:id")
+@app.route("/story/<int:story_id>")
 def story(id):
     story = stories.get_story(id)
     comments = stories.get_story_comments
