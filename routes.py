@@ -51,14 +51,12 @@ def newstory():
     if request.method == "GET":
         return render_template("newstory.html", categories=categories.get_categories())
     if request.method == "POST":
-        category_id = request.form["category_id"]
-        story_title = request.form["storytitle"]
+        story_title = request.form["title"]
         if len(story_title) < 1:
             return render_template("error.html", message="Title can't be empty")
         content = request.form["story"]
         if len(content) < 100:
             return render_template("error.html", message="Please write at least 100 characters")
-        story_id = stories.add_story(story_title, content, users.user_id(), category_id)
         return redirect("/")
 
 @app.route("/story/<int:id>")

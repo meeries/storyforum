@@ -5,10 +5,10 @@
 <form action="/newstory" method="post">
 <div class="text-center">
 <p>Story title<br>
-    <input type="text" name="storytitle" minlength="1" maxlength="30"></p>
+    <input type="text" name="title" minlength="1" maxlength="30"></p>
 
     <p>Story<br>
-    <textarea name="comments" rows="10" cols="70" maxlength="1000"></textarea></p>
+    <textarea name="story" rows="10" cols="70" maxlength="1000"></textarea></p>
     <select class="form-select text-center mx-auto" name="category">
 
         {% for i in categories %}
