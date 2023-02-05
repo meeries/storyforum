@@ -1,4 +1,6 @@
 # Tarinafoorumi
+Sovellus ei ole testattavissa fly.iossa! Alempana on ohjeet sen käynnistämiseen.
+
 ## Tietokantasovellus
 Sovellus on foorumi, jonne käyttäjä voi lisätä tarinoita joita muut käyttäjät voivat kommentoida.
 Sovellus perustuu materiaalissa olevaan keskustelusovellukseen, mutta keksustelujen sijaan käyttäjät voivat lisätä foorumille tarinansa, ja muut voivat kommentoida niitä.
