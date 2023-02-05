@@ -10,6 +10,9 @@
 <a href="/category/4">Love</a> - love stories <3<br><br>
 <a href="/category/5">Health</a> - stories about your health (good or bad)<br><br>
 <a href="/category/6">Other</a> - stories that don't fit in the other categories<br><br>
-
-<a href="/newstory">Write a story</a>
+{% if session.user_id %}</b><br>
+<a href="/newstory">Write a story!</a> <br>
+{% else %}
+<a href="/login">Log in</a> to write a new story <br>
+{% endif %}  
 {% endblock %}

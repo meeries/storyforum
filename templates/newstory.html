@@ -6,14 +6,21 @@
 <div class="text-center">
 <p>Story title<br>
     <input type="text" name="storytitle" minlength="1" maxlength="30"></p>
-    
+
     <p>Story<br>
-    <textarea name="story" rows="10" cols="80" maxlength="1000"></textarea></p>
+    <textarea name="comments" rows="10" cols="70" maxlength="1000"></textarea></p>
+    <select class="form-select text-center mx-auto" name="category">
+
+        {% for i in categories %}
+        <option value="{{ i.id }}">
+            {{i.category_name}}</option>
+        {% endfor %}
+    </select>
     <p>
     <p>
     <input type="submit" value="Post">
 
     </form>
-    
+
 </div>
 {% endblock %}

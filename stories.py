@@ -18,3 +18,8 @@ def get_story_comments(story_id):
    sql = "SELECT C.id, C.content, C.user_id, U.username, C.sent_at FROM comments C INNER JOIN users U ON C.user_id=U.id WHERE C.story_id=:story_id ORDER BY C.id"
    result = db.session.execute(sql, {"story_id":story_id})
    return result.fetchall()
+
+def get_all_story_titles(story_id):
+    sql = "SELECT title, created_at FROM stories ORDER BY created_at DESC"
+    result = db.session.execute(sql, {"story_id":story_id})
+    return result.fetchall()
