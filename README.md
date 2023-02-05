@@ -26,8 +26,8 @@ Käyttäjä voi poistaa oman tarinansa
 
 2. Luo sen juurikansioon .env-tiedosto, ja aseta sen sisällöksi:
 ```bash
-DATABASE_URL=<tietokannan-paikallinen-osoite>
-SECRET_KEY=<salainen-avain>
+postgresql:///<user>
+SECRET_KEY=<16-merkkinen-salainen-avain>
 ```
 
 3. Määritä tietokannan skeema komennolla
