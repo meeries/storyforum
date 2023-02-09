@@ -2,12 +2,13 @@
 {% block title %}Stories about...{% endblock %}
 {% block content %}
 <h2>{{ category_name }}</h2>
+
 {% if not stories %}
 <h3> No stories in this category yet :( </h3>
 {% endif %}
 
     {% for story in stories %}
-    <a href="/story/{{ story.id }}">{{ story[0] }}</a>
+    <a href="/story/{{ story.id }}">{{ storytitle }}</a>
     {% endfor %}
     <hr>
 {% endblock %}

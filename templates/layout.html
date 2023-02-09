@@ -10,14 +10,23 @@
   <body>
     <div id="top">
         <h1>StoryForum</h1>
+        <a href="/">Home</a>
+        <br>
+        <br>
         {% if session.user_id %}
         You are logged in as: <b>{{ session.user_name }}</b><br>
-        <a href="/logout">Log out</a> <br>
-        <a href="/">Home</a>
+        <a href="/logout">Log out</a>
+        <br>
+        <br>
         {% else %}
         <a href="/login">Log in</a>
         <a href="/register">Create an account</a>
         {% endif %}
+        Search stories:
+        <form action="/search" method="POST">
+          <input type="text" name="keyword" placeholder="Keyword..">
+          <input type="submit" value="Search">
+          </form>
     </div>
     <hr>
     {% block content %}{% endblock %}

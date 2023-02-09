@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>Results...</h2>
+...with keyword: <b>{{  keyword  }}</b>
+<br>
+<br>
+{% for story in stories %}
+<p>Story: <a href="/story/{{ story[0] }}">{{ story[1] }}</a></p>
+{% endfor %}
+
+{% if not stories %}
+<h3>No results for this keyword. Try a different one!</h3>
+
+{% endif %}
+{% endblock %}

@@ -18,3 +18,9 @@ def get_story_comments(story_id):
    sql = "SELECT C.id, C.content, C.user_id, U.username, C.sent_at FROM comments C INNER JOIN users U ON C.user_id=U.id WHERE C.story_id=:story_id ORDER BY C.id"
    result = db.session.execute(sql, {"story_id":story_id})
    return result.fetchall()
+
+def search(keyword):
+    sql = """SELECT S.id, S.title, S.content, S.created_at, S.user_id, U.username FROM STOREIS S INNER JOIN users U ON S.user_id=U.id 
+             WHERE (LOWER(S.title) LIKE LOWER(:keyword) OR LOWER(S.content) LIKE LOWER(:keyword)) AND T.visible=TRUE ORDER BY S.id DESC"""
+    result = db.session.execute(sql, {"keyword":"%"+keyword+"%"})
+    return result.fetchall()

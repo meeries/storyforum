@@ -4,15 +4,12 @@
 <h2>Welcome to StoryForum!</h2>
 <p>
 <h3>Categories:</h3>
-<a href="/category/1">Life</a> - stories about life in general<br><br>
-<a href="/category/2">Travel</a> - stories about traveling the world<br><br>
-<a href="/category/3">History</a> - stories about history<br><br>
-<a href="/category/4">Love</a> - love stories <3<br><br>
-<a href="/category/5">Health</a> - stories about your health (good or bad)<br><br>
-<a href="/category/6">Other</a> - stories that don't fit in the other categories<br><br>
+{% for category in categories %}
+    <a href="/category/{{ category.id }}">{{ category.category_name }}</a> <br>
+{% endfor %} 
 {% if session.user_id %}</b><br>
 <a href="/newstory">Write a story!</a> <br>
 {% else %}
-<a href="/login">Log in</a> to write a new story <br>
+<a href="/login">Log in so you can write a story!</a> <br>
 {% endif %}  
 {% endblock %}

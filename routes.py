@@ -4,7 +4,7 @@ import users, categories, stories, comments
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", categories = categories.get_categories())
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -51,13 +51,15 @@ def newstory():
     if request.method == "GET":
         return render_template("newstory.html", categories=categories.get_categories())
     if request.method == "POST":
-        story_title = request.form["title"]
+        story_title = request.form["storytitle"]
         if len(story_title) < 1:
             return render_template("error.html", message="Title can't be empty")
         content = request.form["story"]
         if len(content) < 100:
             return render_template("error.html", message="Please write at least 100 characters")
-        return redirect("/")
+        category_id = request.form["category_id"]
+        story_id = stories.add_story(story_title, content, users.user_id, category_id)
+        return redirect("/category/" + str(category_id))
 
 @app.route("/story/<int:id>")
 def story(id):
@@ -71,3 +73,9 @@ def category(id):
     category_name = categories.get_category_name(id)
     stories = categories.get_category_stories(id)
     return render_template("category.html", category_name=category_name, id=id, stories=stories)
+
+@app.route("/search", methods=["post"])
+def search():
+    keyword = request.form["keyword"]
+    stories_list = []
+    return render_template("results.html", stories=stories_list, keyword=keyword)

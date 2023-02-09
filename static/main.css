@@ -16,6 +16,10 @@ h2{
     color:rgb(253, 158, 190)
 }
 
+h3{
+    font-size: 1.3em;
+}
+
 #top{
     width: 100%;
     padding: 10px, 10px, 10px, 10px;
