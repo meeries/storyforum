@@ -32,12 +32,17 @@ postgresql:///<user>
 SECRET_KEY=<16-merkkinen-salainen-avain>
 ```
 
-3. Määritä tietokannan skeema komennolla
+3. Asenna riippuvuudet komennolla
+```bash
+pip install -r requirements.txt
+```
+
+4. Määritä tietokannan skeema komennolla
 ```bash
 psql < schema.sql
 ```
 
-4. Käynnistä sovellus komennolla
+5. Käynnistä sovellus komennolla
 ```bash
 flask run
 ```
