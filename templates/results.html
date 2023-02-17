@@ -7,7 +7,7 @@
 <br>
 <br>
 {% for story in stories %}
-<p>Story: <a href="/story/{{ story.id }}">{{ story[1]}}</a></p>
+<a href="/story/{{ story.id }}">{{ story[0]}}</a>
 {% endfor %}
 
 {% if not stories %}

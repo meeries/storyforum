@@ -18,7 +18,6 @@ CREATE TABLE stories (
     visible BOOLEAN,
     category_id INTEGER REFERENCES categories,
     user_id INTEGER REFERENCES users,
-    created_at TIMESTAMP
 );
 
 CREATE TABLE comments (
@@ -26,17 +25,13 @@ CREATE TABLE comments (
     content TEXT,
     user_id INTEGER REFERENCES users,
     story_id INTEGER REFERENCES stories,
-    sent_at TIMESTAMP
 );
 
 CREATE TABLE likes (
-    acc_id INTEGER REFERENCES users ON DELETE CASCADE,
-    comm_id INTEGER REFERENCES comments ON DELETE CASCADE,
-    PRIMARY KEY (acc_id, comm_id)
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
+    story_id INTEGER REFERENCES stories,
 );
-
-CREATE INDEX ON likes (comm_id)
-;
 
 INSERT INTO categories (category_name) VALUES
 ('Life'),

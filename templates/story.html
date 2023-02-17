@@ -1,7 +1,25 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>{{ story[1] }}</h2>
-<p>{{ story[2] }}</p>
+<h2>{{ story[0][0] }}</h2>
+<p>{{ story[0][1] }}</p>
+<form action="/like_story" method="post">
+    <input type="hidden" name="story_id" value="{{ story_id }}">
+    <input id="button" type="submit" value="Like">
+</form>
 
-{% endblock %}
+{% for comment in comments %}
+<p>Sent by: {{ comment[3] }}</p>
+<p>At: {{ comment[4].strftime("%d.%m.%Y %H:%M") }}</p>
+<p>{{ comment[1] }}</p>
+{% endfor %}
+<form action="/add_comment" method="post">
+    <p>Add comment:</p>
+    {% if session.user_id %}
+    <textarea name="comment" rows="4" cols="40" required minlength="1" maxlength="500"></textarea></p>
+    <input type="hidden" name="story_id" value="{{ story_id }}">
+    <input type="submit" value="Add comment">
+    {% else %}
+    <a href="/login">Log in</a> to add a comment!
+    {% endif %}
+    {% endblock %}

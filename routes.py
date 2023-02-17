@@ -64,7 +64,7 @@ def newstory():
 @app.route("/story/<int:id>")
 def story(id):
     story = stories.get_story(id)
-    comments = stories.get_story_comments
+    comments = stories.get_story_comments(id)
     return render_template("story.html", story=story, id=id, comments=comments)
 
 ###
@@ -77,5 +77,21 @@ def category(id):
 @app.route("/search", methods=["post"])
 def search():
     keyword = request.form["keyword"]
-    stories_list = []
+    stories_list = stories.search(keyword)
     return render_template("results.html", stories=stories_list, keyword=keyword)
+
+@app.route("/add_comment", methods=["POST"])
+def add_comment():
+    if request.method == "POST":
+        story_id = request.form["story_id"]
+        comment = request.form["comment"]
+        comments.add_comment(comment, users.user_id(), story_id)
+        return redirect("/story/" + str(story_id))
+
+@app.route("/like_story", methods=["post"])
+def like_story():
+    story_id = request.form["story_id"]
+    if stories.has_user_liked(story_id, users.user_id()) == True:
+        return render_template("error.html", message="You have already liked this story")
+    else:
+        stories.like_story(story_id, users.user_id())
