@@ -14,14 +14,20 @@ Käyttäjä voi kirjautua ulos
 
 Käyttäjä voi selata kategorioita
 
-Käyttäjä voi kirjoittaa uuden tarinan (tämä ominaisuus toimi, mutta enää uusi tarina ei tallennu tietokantaan. En saanut korjattua koska olen ollut koko loppuviikon kuumeessa. :()
+Käyttäjä voi kirjoittaa uuden tarinan
+
+Käyttäjä voi selata kirjoitettuja tarinoita
+
+Käyttäjä voi hakea tarinoista
+
+Käyttäjä  voi tykätä tarinoista (tässä on bugi)
+
+Käyttäjä voi kommentoida tarinoita (tässä on bugi)
 
 ## Toteutuksessa olevat ominaisuudet:
-Käyttäjä voi lukea muiden kirjoittamia tarinoita
+Bugien korjaus tykkäyksessä ja kommentoinnissa
 
-Käyttäjä voi tykätä ja kommentoida muiden tarinoihin
-
-Käyttäjä voi poistaa oman tarinansa
+Tietoturvan parantaminen
 
 ## Käynnistysohjeet:
 1. Kloonaa tämä repositorio omalle koneellesi.
