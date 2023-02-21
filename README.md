@@ -38,17 +38,23 @@ postgresql:///<user>
 SECRET_KEY=<16-merkkinen-salainen-avain>
 ```
 
-3. Asenna riippuvuudet komennolla
+3. Aktivoi virtuaaliympäristö komennoilla:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+4. Asenna riippuvuudet komennolla
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Määritä tietokannan skeema komennolla
+5. Määritä tietokannan skeema komennolla
 ```bash
 psql < schema.sql
 ```
 
-5. Käynnistä sovellus komennolla
+6. Käynnistä sovellus komennolla
 ```bash
 flask run
 ```
