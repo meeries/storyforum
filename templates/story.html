@@ -5,7 +5,7 @@
 <p>Written by: {{ story[0][3] }}</p>
 <p>{{ story[0][1] }}</p>
 <form action="/like_story" method="post">
-    <input type="hidden" name="story_id" value="{{ story_id }}">
+    <input type="hidden" name="story_id" value="{{ id }}">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input id="button" type="submit" value="Like">
 </form>
@@ -19,7 +19,7 @@
     <p>Add comment:</p>
     {% if session.user_id %}
     <textarea name="comment" rows="4" cols="40" required minlength="1" maxlength="500"></textarea></p>
-    <input type="hidden" name="story_id" value="{{ story_id }}">
+    <input type="hidden" name="story_id" value="{{ id }}">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="submit" value="Add comment">
     {% else %}
