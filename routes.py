@@ -51,6 +51,7 @@ def newstory():
     if request.method == "GET":
         return render_template("newstory.html", categories=categories.get_categories())
     if request.method == "POST":
+        users.check_csrf()
         story_title = request.form["storytitle"]
         if len(story_title) < 1:
             return render_template("error.html", message="Title can't be empty")
@@ -83,6 +84,7 @@ def search():
 @app.route("/add_comment", methods=["POST"])
 def add_comment():
     if request.method == "POST":
+        users.check_csrf()
         story_id = request.form["story_id"]
         comment = request.form["comment"]
         comments.add_comment(comment, users.user_id(), story_id)
@@ -90,8 +92,10 @@ def add_comment():
 
 @app.route("/like_story", methods=["post"])
 def like_story():
-    story_id = request.form["story_id"]
-    if stories.has_user_liked(story_id, users.user_id()) == True:
-        return render_template("error.html", message="You have already liked this story")
-    else:
-        stories.like_story(story_id, users.user_id())
+    if request.method == "POST":
+        users.check_csrf()
+        story_id = request.form["story_id"]
+        if stories.has_user_liked(story_id, users.user_id()) == True:
+            return render_template("error.html", message="You have already liked this story")
+        else:
+            stories.like_story(story_id, users.user_id())

@@ -17,20 +17,20 @@ CREATE TABLE stories (
     content TEXT,
     visible BOOLEAN,
     category_id INTEGER REFERENCES categories,
-    user_id INTEGER REFERENCES users,
+    user_id INTEGER REFERENCES users
 );
 
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     content TEXT,
     user_id INTEGER REFERENCES users,
-    story_id INTEGER REFERENCES stories,
+    story_id INTEGER REFERENCES stories
 );
 
 CREATE TABLE likes (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users,
-    story_id INTEGER REFERENCES stories,
+    story_id INTEGER REFERENCES stories
 );
 
 INSERT INTO categories (category_name) VALUES

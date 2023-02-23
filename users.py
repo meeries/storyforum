@@ -1,5 +1,6 @@
+import os
 from db import db
-from flask import session
+from flask import session, request, abort
 from werkzeug.security import check_password_hash, generate_password_hash
 
 def register(username, password):
@@ -21,8 +22,9 @@ def login(username, password):
         return False
     if not check_password_hash(user[0], password):
         return False
-    session["user_id"] = user[1]
+    session["user_id"] = user[0]
     session["user_name"] = username
+    session["csrf_token"] = os.urandom(16).hex()
 
     return True
 
@@ -36,3 +38,7 @@ def username_available(username):
     sql = "SELECT COUNT(*) FROM users WHERE username=:username"
     result= db.session.execute(sql, {"username":username})
     return result.fetchone()[0]
+
+def check_csrf():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)

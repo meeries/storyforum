@@ -9,7 +9,7 @@
 {% endif %}
 
     {% for story in stories %}
-    <a href="/story/{{ story.id }}">{{ story[1]}}</a>
+    <p><a href="/story/{{ story.id }}">{{ story[1]}}</a></p>
     {% endfor %}
     <hr>
 {% endblock %}
