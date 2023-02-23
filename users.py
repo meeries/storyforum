@@ -22,14 +22,14 @@ def login(username, password):
         return False
     if not check_password_hash(user[0], password):
         return False
-    session["user_id"] = user[0]
+    session["user_id"] = user[1]
     session["user_name"] = username
     session["csrf_token"] = os.urandom(16).hex()
 
     return True
 
 def user_id():
-    return session.get("user_id)")
+    return session.get("user_id")
 
 def logout():
     del session["user_id"]
