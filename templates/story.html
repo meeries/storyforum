@@ -2,23 +2,27 @@
 
 {% block content %}
 <h2>{{ story[0][0] }}</h2>
-<p>Written by: {{ story[0][3] }}</p>
+<p>Written by: {{ story[3] }}</p>
 <p>{{ story[0][1] }}</p>
 <form action="/like_story" method="post">
     <input type="hidden" name="story_id" value="{{ id }}">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input id="button" type="submit" value="Like">
 </form>
-
-{% for comment in comments %}
-<p>Sent by: {{ comment[3] }}</p>
-<p>At: {{ comment[4].strftime("%d.%m.%Y %H:%M") }}</p>
-<p>{{ comment[1] }}</p>
+<hr>
+{% if not comments %}
+<h3> Be the first to add a comment! </h3>
+{% endif %}
+    <h2>Comments:</h2>
+    {% for comment in comments %}
+    <p>{{ comment[1] }}</p>
+    <p>Sent by: {{ comment[3] }}</p>
+<hr>
 {% endfor %}
 <form action="/add_comment" method="post">
     <p>Add comment:</p>
     {% if session.user_id %}
-    <textarea name="comment" rows="4" cols="40" required minlength="1" maxlength="500"></textarea></p>
+    <textarea name="content" rows="4" cols="40" required minlength="1" maxlength="500"></textarea></p>
     <input type="hidden" name="story_id" value="{{ id }}">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="submit" value="Add comment">

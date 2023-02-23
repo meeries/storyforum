@@ -86,8 +86,8 @@ def add_comment():
     if request.method == "POST":
         users.check_csrf()
         story_id = request.form["story_id"]
-        comment = request.form["comment"]
-        comments.add_comment(comment, users.user_id(), story_id)
+        content = request.form["content"]
+        comments.add_comment(content, users.user_id(), int(story_id))
         return redirect("/story/" + str(story_id))
 
 @app.route("/like_story", methods=["post"])
