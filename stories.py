@@ -24,14 +24,14 @@ def search(keyword):
     result = db.session.execute(sql, {"keyword":"%"+keyword+"%"})
     return result.fetchall()
 
-def like_story(story_id, user_id):
-    sql = "INSERT INTO likes (story_id, user_id) VALUES (:story_id, user_id)"
-    db.session.execute(sql, {"story_id":story_id, "user_id":user_id})
+def like_story(story_id, liker_id):
+    sql = "INSERT INTO likes (story_id, liker_id) VALUES (:story_id, liker_id)"
+    db.session.execute(sql, {"story_id":story_id, "liker_id":liker_id})
     db.session.commit()
 
-def has_user_liked(story_id, user_id):
-    sql = "SELECT * FROM likes WHERE story_id=:story_id AND user_id=:user_id"
-    result = db.session.execute(sql, {"story_id":story_id, "user_id":user_id}).fetchall()
+def has_user_liked(story_id, liker_id):
+    sql = "SELECT * FROM likes WHERE story_id=:story_id AND liker_id=:liker_id"
+    result = db.session.execute(sql, {"story_id":story_id, "liker_id":liker_id}).fetchall()
     if len(result) == 0:
         return False
     else:

@@ -29,7 +29,7 @@ CREATE TABLE comments (
 
 CREATE TABLE likes (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
+    liker_id INTEGER REFERENCES users,
     story_id INTEGER REFERENCES stories
 );
 
