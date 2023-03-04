@@ -20,9 +20,15 @@ Käyttäjä voi selata kirjoitettuja tarinoita
 
 Käyttäjä voi hakea tarinoista
 
-Käyttäjä  voi tykätä tarinoista (tässä on bugi)
+Käyttäjä  voi tykätä tarinoista
 
-Käyttäjä voi kommentoida tarinoita (tässä on bugi)
+Käyttäjä voi kommentoida tarinoita
+
+
+## Ominaisuudet, joita voisi lisätä
+Tarinan, kommentin ja tykkäyksen poistaminen
+
+
 
 ## Toteutuksessa olevat ominaisuudet:
 Bugien korjaus tykkäyksessä ja kommentoinnissa
