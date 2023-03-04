@@ -4,11 +4,18 @@
 <h2>{{ story[0][0] }}</h2>
 <p>Written by: {{ story[0][3] }}</p>
 <p>{{ story[0][1] }}</p>
+<p>Likes: {{ likes }}</p>
+
+{% if session.user_id %}
 <form action="/like_story" method="post">
     <input type="hidden" name="story_id" value="{{ id }}">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input id="button" type="submit" value="Like">
 </form>
+{% else %}
+<a href="/login">Log in</a> to like this story!
+{% endif %}
+
 <hr>
 {% if not comments %}
 <h3> Be the first to add a comment! </h3>

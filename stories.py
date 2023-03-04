@@ -19,13 +19,18 @@ def get_story_comments(story_id):
    result = db.session.execute(sql, {"story_id":story_id})
    return result.fetchall()
 
+def get_story_likes(story_id):
+    sql = "SELECT COUNT(*) FROM likes WHERE story_id=:story_id"
+    result = db.session.execute(sql, {"story_id":story_id})
+    return result.fetchone()
+
 def search(keyword):
     sql = "SELECT title, id FROM STORIES WHERE LOWER(title) LIKE LOWER(:keyword)"
     result = db.session.execute(sql, {"keyword":"%"+keyword+"%"})
     return result.fetchall()
 
 def like_story(story_id, liker_id):
-    sql = "INSERT INTO likes (story_id, liker_id) VALUES (:story_id, liker_id)"
+    sql = "INSERT INTO likes (story_id, liker_id) VALUES (:story_id, :liker_id)"
     db.session.execute(sql, {"story_id":story_id, "liker_id":liker_id})
     db.session.commit()
 

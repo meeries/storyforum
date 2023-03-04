@@ -66,7 +66,8 @@ def newstory():
 def story(id):
     story = stories.get_story(id)
     comments = stories.get_story_comments(id)
-    return render_template("story.html", story=story, id=id, comments=comments)
+    likes = stories.get_story_likes(id)
+    return render_template("story.html", story=story, id=id, comments=comments, likes=likes)
 
 ###
 @app.route("/category/<int:id>")
@@ -99,3 +100,4 @@ def like_story():
             return render_template("error.html", message="You have already liked this story")
         else:
             stories.like_story(story_id, users.user_id())
+    return redirect("/story/" + str(story_id))
