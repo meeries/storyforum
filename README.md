@@ -29,12 +29,6 @@ Käyttäjä voi kommentoida tarinoita
 Tarinan, kommentin ja tykkäyksen poistaminen
 
 
-
-## Toteutuksessa olevat ominaisuudet:
-Bugien korjaus tykkäyksessä ja kommentoinnissa
-
-Tietoturvan parantaminen
-
 ## Käynnistysohjeet:
 1. Kloonaa tämä repositorio omalle koneellesi.
 
