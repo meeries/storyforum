@@ -17,10 +17,10 @@
 {% endif %}
 
 <hr>
+<h2>Comments:</h2>
 {% if not comments %}
-<h3> Be the first to add a comment! </h3>
+<h3> No comments yet.... </h3>
 {% endif %}
-    <h2>Comments:</h2>
     {% for comment in comments %}
     <p>{{ comment[1] }}</p>
     <p>Sent by: {{ comment[3] }}</p>

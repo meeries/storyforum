@@ -22,7 +22,7 @@ def get_story_comments(story_id):
 def get_story_likes(story_id):
     sql = "SELECT COUNT(*) FROM likes WHERE story_id=:story_id"
     result = db.session.execute(sql, {"story_id":story_id})
-    return result.fetchone()
+    return result.fetchone()[0]
 
 def search(keyword):
     sql = "SELECT title, id FROM STORIES WHERE LOWER(title) LIKE LOWER(:keyword)"
