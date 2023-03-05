@@ -3,15 +3,15 @@ from flask import session
 from datetime import datetime
 
 def add_story(title, content, user_id, category_id):
-    sql = """INSERT INTO stories (title, content, visible, user_id, category_id)
-            VALUES (:title, :content, TRUE, :user_id, :category_id) RETURNING id"""
-    result = db.session.execute(sql, {"title":title, "content":content, "user_id":user_id, "category_id":category_id}).fetchone()[0]
+    sql = """INSERT INTO stories (title, content, visible, category_id, user_id)
+            VALUES (:title, :content, TRUE, :category_id, user_id) RETURNING id"""
+    result = db.session.execute(sql, {"title":title, "content":content, "category_id":category_id, "user_id":user_id}).fetchone()[0]
     db.session.commit()
     return result
 
 def get_story(story_id):
-    sql = "SELECT title, content FROM stories WHERE id=:id"
-    result = db.session.execute(sql, {"id":story_id})
+    sql = "SELECT S.title, S.content, S.user_id, U.username FROM stories S INNER JOIN users U ON S.user_id=U.id WHERE S.id=:story_id"
+    result = db.session.execute(sql, {"story_id":story_id})
     return result.fetchall()
 
 def get_story_comments(story_id):
